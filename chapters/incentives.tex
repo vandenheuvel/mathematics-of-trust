@@ -1,0 +1,32 @@
+\chapter{Modeling incentives}
+\section{A first model}
+\subsection{Notation}
+We will start developing our model by considering a market $M := \{ A | A \ \text{is an agent} \}$ where a unit good $v$, which has value and can be created by doing one unite of work $w$, is traded. Denote by $V_A$ the set of all $v$ owned or consumed by $A$ and by $W_A$ all units of work $A$ has performed. All agents are able to transact in an atomic\todo{Incentive-proof model for an atomic transaction}, costless manner. Transactions are ordered in time and record a single $v$ being sold by agent $B$ to agent $A$ as transaction $T = (A, p(v), B)$ where $p(v) \in \mathds{R}$ denotes the price of $v$. All past transactions are recorded in a history $H$, of which we will for now assume that it is complete and available to all agents in $M$. When a transaction $T$ is appended to history $H$, we denote this by $H + T$.
+
+All agents $A \in M$ have a reputation function $r_A: (M \times \mathcal{H}) \to \mathcal{R} = (B, H) \mapsto r_A(B | H)$ where $\mathcal{R}$ denotes the set of possible reputations and $\mathcal{H}$ denotes the set of possible histories $H$. We now define $r_M: (M \times \mathcal{H}) \to \mathcal{R}$ as
+\[(A, H) \mapsto \max_{B \in M \setminus \{ A \}} r_B(A | H),\]
+the highest reputation assigned by any market member.
+
+We denote by $u^R_A: \mathcal{R} \to \mathcal{U}$ the utility $A$ derives from reputation $r$, and by $u^V_A: V \to \mathcal{U}$ the utility $A$ derives from valueable $v$. We assume that a unit of work performed by $A$ costs utility $u^W_A$, while a $v$ received lets $A$ enjoy a positive $u^V_A$. The total utility of agent $A$ is now denoted by $u^T_A: \mathcal{H} \to \mathcal{U} = u^R_A + \sum_{v \in V} u^V_A(v) + \sum_{w \in W} u^W_A(w)$. $\mathcal{R}$ and $\mathcal{U}$ are totally ordered, while for $u^R_A$ we have $x > y \in \mathcal{R} \Rightarrow u^R_A(x) > u^R_A(y)$. Naturally, we suppose that agents in $M$ attempt to maximize their $u^T$ by taking part in the right transactions.
+
+\subsection{Interpretation}
+In such a market $M$, an agent $A$'s reputation depends on the entire history $H$. We can view $A$'s reputation $r_M(A|H)$ as a measure of $A$'s future ability to do create transactions in the network. The price $p(v)$ that two agents might agree upon will depend on the the utility they derive from the valueable $v$ transfered and the change in assigned reputation by the market after this transaction. The reputation of $A$ will influence its ability to participate in $M$ in the future. In this way, the utility derived from $v$ and utility derived from $A$'s reputation represent $A$'s short- and long-term interests respectively.
+
+As is common in micro-economics, we can investigate an agent's utility curves and 
+
+\subsection{Transaction condition}
+We are now ready to formulate a simple transaction condition for agent $A$. Its utility will increase by doing a transaction $T = (A, p(v), B)$ if $u^T_A(H + T) > u^T_A(H)$, or
+\[u^R_A(r_M(A|H + T)) + u_A(v) > u^R_A(r_M(A|H)).\]
+Note that this condition isn't dependent on $r_A$. This implies that in deciding which trades to perform, an agent's own measure of reputation is irrelevant. It only matters how the rest of the market perceives an agent's actions.
+
+% TODO: Utility curves
+
+\section{Conditions for a system of trust}
+
+\section{Reputation}
+\subsection{Perception of market dominates}
+% TODO: prove that own reputation perspective is irrelevant
+
+\section{Comparison to a classical market}
+% TODO: Comparison with basic micro-economic theory
+
