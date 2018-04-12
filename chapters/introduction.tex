@@ -1,40 +1,110 @@
 \chapter{Introduction}
 \section{Historical Perspective}
-Cooperation is a hard problem. In many environments, self-interested and rational choice making results in a suboptimal outcome for all. Arguably the best known example of this problem is the prisoner's dilemma, where defection is a dominant strategy. The prisoners' inability to coordinate and build expectations of the choice made by the other prisoner ensures that both will be worse off than if they had collaborated.
+Cooperation is a hard problem. 
+In many environments, self-interested and rational choice making results in a suboptimal outcome for all. 
+Arguably the best known example of this problem is the prisoner's dilemma, 
+where defection is a dominant strategy. 
+The prisoners' inability to coordinate and build expectations of the choice made by the other prisoner ensures that both will be worse off than if they had collaborated.
 
-In real life, we encounter more often a repeated version of the prisoner's dilemma, or the iterated prisoner's dilemma. We often meet the same people. For this game, different strategies exist. 
+In real life, we encounter more often a repeated version of the prisoner's dilemma, or the iterated prisoner's dilemma. 
+We often meet the same people. 
+For this game, different strategies exist. 
 % TODO: Introduce to Tragedy of the Commons
 
 \subsection{Trust}
-There are various definitions of trust, but all have a few basics facets to them. Wikipedia defines trust as a situation characterized by the following aspects \cite{wikipedia_trust}:
+There are various definitions of trust, 
+but all have a few basics facets to them. 
+Wikipedia defines trust as a situation characterized by the following aspects \cite{wikipedia_trust}:
 \begin{itemize}
-	\item one party (trustor) is willing to rely on the actions of another party (trustee); the situation is directed to the future
+	\item one party (trustor) is willing to rely on the actions of another party (trustee); 
+	the situation is directed to the future
 	\item the trustor (voluntarily or forcedly) abandons control over the actions performed by the trustee
-	\item the trustor is uncertain about the outcome of the other's actions; they can only develop and evaluate expectations
+	\item the trustor is uncertain about the outcome of the other's actions; 
+	they can only develop and evaluate expectations
 	\item the uncertainty involves the risk of failure or harm to the trustor if the trustee will not behave as desired
 \end{itemize}
-Trust systems have existed in our societies for already hundreds of years. In the \emph{pre-industrial revolution} age, people interacted within their communities in order to exchange goods. As this interaction was highly local, personal experience and gossip sufficed to determine whether a person was trustworthy. This is referred to as the first generation trust system. 
+Trust systems have existed in our societies for already hundreds of years. 
+In the \emph{pre-industrial revolution} age, people interacted within their communities in order to exchange goods. 
+As this interaction was highly local, personal experience and gossip sufficed to determine whether a person was trustworthy. 
+This is referred to as the first generation trust system. 
 
-Later on, in the \emph{post-industrial revolution} age, companies producing and selling goods started to emerge, which caused people to depend on their products, instead of only acting locally. During that period, companies invested loads of money in order to improve their reputations, based on brands such as Nike. These investments serve as a commitment; customers know what they can expect from these companies in the future. Not surprisingly, we call this the second generation trust system. 
+Later on, in the \emph{post-industrial revolution} age, 
+companies producing and selling goods started to emerge, which caused people to depend on their products, instead of only acting locally. 
+During that period, companies invested loads of money in order to improve their reputations, based on brands such as Nike. 
+These investments serve as a commitment; customers know what they can expect from these companies in the future. 
+Not surprisingly, we call this the second generation trust system. 
 
-Currently, we are living in a \emph{sharing economy}, which lead us to the third generation trust systems, based on software reputation systems, such as eBay. These companies keep track of transaction and rating histories, in order to show an indication of the reliability of users interacting with each other. However, these reputations are bound to the company itself; a positive reputation in eBay cannot be moved to AliExpress, for instance. 
+Currently, we are living in a \emph{sharing economy}, which lead us to the third generation trust systems, based on software reputation systems, 
+such as eBay. 
+These companies keep track of transaction and rating histories, 
+in order to show an indication of the reliability of users interacting with each other. 
+However, these reputations are bound to the company itself; 
+a positive reputation in eBay cannot be moved to AliExpress, for instance. 
 
-We envision a fourth generation trust system in which this restriction of having a central authority keeping track of the history has been removed. We need a system that is owned by everybody and nobody at the same time, and this system still needs to be scalable to billions of users. We need a \emph{universal mechanism for creating trust}, in which numerous applications are supported. This is, unfortunately, still an unsolved scientific problem, but there are enough prospects to be optimistic about. In the following, we will outline related efforts, working towards this purpose. 
+We envision a fourth generation trust system in which this restriction of having a central authority keeping track of the history has been removed. 
+We need a system that is owned by everybody and nobody at the same time, and this system still needs to be scalable to billions of users. 
+We need a \emph{universal mechanism for creating trust}, in which numerous applications are supported. 
+This is, unfortunately, still an unsolved scientific problem, 
+but there are enough prospects to be optimistic about. 
+In the following, we will outline related efforts, 
+working towards this purpose. 
 
 
 \section{Blockchains}
-One shared characteristic of the systems in our current sharing economy, is the existence of a third party, that verifies and keeps track of all transactions. For example, the payments we do are handled by a bank, which ensures at the same time that money cannot be spent twice, by logging all transactions. This characteristic has many drawbacks. In the first place, having a central point where all traffic needs to pass, increases the risk to failure, and to malicious hackers trying to exploit vulnerabilities. Moreover, we can never be sure whether this authorizing third party itself is trustworthy or not. Lastly, routing all traffic via a certain central point is highly inefficient; it would be better to have direct interactions, as occurred during the \emph{pre-industrial revolution} age. 
+One shared characteristic of the systems in our current sharing economy, 
+is the existence of a third party, 
+that verifies and keeps track of all transactions. 
+For example, the payments we do are handled by a bank, 
+which ensures at the same time that money cannot be spent twice, 
+by logging all transactions. 
+This characteristic has many drawbacks. 
+In the first place, having a central point where all traffic needs to pass, 
+increases the risk to failure, and to malicious hackers trying to exploit vulnerabilities. 
+Moreover, we can never be sure whether this authorizing third party itself is trustworthy or not. 
+Lastly, routing all traffic via a certain central point is highly inefficient; 
+it would be better to have direct interactions, 
+as occurred during the \emph{pre-industrial revolution} age. 
 
-These problems need to be addressed by using a so-called decentralized system, where data have been made transparent to everyone involved. There is no third party that verifies or keeps track of all transactions; this work needs to be, and can be done by everyone. 
+These problems need to be addressed by using a so-called decentralized system, 
+where data have been made transparent to everyone involved. 
+There is no third party that verifies or keeps track of all transactions; 
+this work needs to be, and can be done by everyone. 
 
-The transactions are held by so-called blocks, where each block contains a cryptographic hash of the previous block, a timestamp, and of course the data itself. A cryptographic hash is an example of a one-way function, i.e. a function that is easy (computationally inexpensive) to compute, but infeasible to invert by current technology. The fact that each block contains a hash of the previous one, makes that all blocks together form a chain, hence the name blockchain. 
+The transactions are held by so-called blocks, 
+where each block contains a cryptographic hash of the previous block, a timestamp, and of course the data itself. 
+A cryptographic hash is an example of a one-way function, 
+i.e. a function that is easy (computationally inexpensive) to compute, 
+but infeasible to invert by current technology. 
+The fact that each block contains a hash of the previous one, 
+makes that all blocks together form a chain, hence the name blockchain. 
 
 \subsection{Consensus in proof-of-work blockchains}
-As the blocks are not kept by a central authority, all users (nodes in the network) need to reach consensus on what is ``the real history''. There are many sorts of consensus algorithms, we will consider one group of them, called proof-of-work. 
+As the blocks are not kept by a central authority, all users (nodes in the network) need to reach consensus on what is ``the real history''. 
+There are many sorts of consensus algorithms, 
+we will consider one group of them, called proof-of-work. 
 
-Proof-of-work is in general requiring the service requester to do some work, for instance processing time by a computer. Since this work needs to take a considerable amount of time to be done, but little time to check, one-way functions are particularly suitable for such tasks. An application of this could be preventing email spam, by requiring ``work'' for each email that a user wants to send. For legitimate users wanting to send a few emails, this work can be easily done, whereas spammers will have more difficulties. 
+Proof-of-work is in general requiring the service requester to do some work, 
+for instance processing time by a computer. 
+Since this work needs to take a considerable amount of time to be done, 
+but little time to check, 
+one-way functions are particularly suitable for such tasks. 
+An application of this could be preventing email spam, by requiring ``work'' for each email that a user wants to send. 
+For legitimate users wanting to send a few emails, 
+this work can be easily done, 
+whereas spammers will have more difficulties. 
 
-In blockchain systems, proof-of-work is used for block creation. Before a new block is accepted, its creator must complete a proof of work, which covers the data in the block. The difficulty of the work is adjusted to limit the rate at which new blocks can be generated (usually one every few minutes). Since every block in the chain represents a certain amount of work, and successive blocks are linked using hashes (as explained earlier), changing one block requires regenerating all successive blocks, and thus redoing all the work. Hence, blockchains are extremely difficult (if not impossible) to tamper with. Moreover, proof-of-work is also a good defense against Sybil attacks, in which a user creates many pseudonymous identities in order to gain influence or trust. By requiring a certain amount of work for every identity, this becomes more difficult to do from a single or few machines. 
+In blockchain systems, proof-of-work is used for block creation. 
+Before a new block is accepted, 
+its creator must complete a proof of work, 
+which covers the data in the block. 
+The difficulty of the work is adjusted to limit the rate at which new blocks can be generated (usually one every few minutes). 
+Since every block in the chain represents a certain amount of work, and successive blocks are linked using hashes (as explained earlier), 
+changing one block requires regenerating all successive blocks, and thus redoing all the work. 
+Hence, blockchains are extremely difficult (if not impossible) to tamper with. 
+Moreover, proof-of-work is also a good defense against Sybil attacks, 
+in which a user creates many pseudonymous identities in order to gain influence or trust. 
+By requiring a certain amount of work for every identity, 
+this becomes more difficult to do from a single or few machines. 
 
 \section{TrustChain and other multi-chains}
 % TODO: Introduce history, transactions. Own chain.

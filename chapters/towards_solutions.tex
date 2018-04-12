@@ -7,10 +7,17 @@
 % TODO White about basic asymmetric cryptography
 
 \subsection{Atomic transactions}
-One of the many assumptions made in section \ref{section:model_notation} was the atomicity of transactions. This appears trivial at first, but isn't in practice. How should one transfer value at the same time as one records this value transfer? A transaction participant could refuse to perform work after a transaction has been signed, or an actor receiving work could refuse to sign a transaction after the work has been completed.
+One of the many assumptions made in section \ref{section:model_notation} was the atomicity of transactions. 
+This appears trivial at first, but is not in practice. 
+How should one transfer value at the same time as one records this value transfer? 
+A transaction participant could refuse to perform work after a transaction has been signed, 
+or an actor receiving work could refuse to sign a transaction after the work has been completed.
 
 \subsubsection{A simple scheme}
-For this reason we provide an example of a simple transaction scheme, for which it is beneficial for participant, not to cheat. The protocol consists of several steps. Participant $A$ receives and pays for work performed by $B$.
+For this reason we provide an example of a simple transaction scheme, 
+for which it is beneficial for participant, not to cheat. 
+The protocol consists of several steps. 
+Participant $A$ receives and pays for work performed by $B$.
 \begin{enumerate}
 	\item $A$ provides cryptographic proof to $B$ demonstrating it agrees to a price for a specific good
 	\item \label{atomic_transactions_enumerate_proof_of_work}$B$ performs work and \emph{obtains a cryptographic proof of work performed}
@@ -18,15 +25,23 @@ For this reason we provide an example of a simple transaction scheme, for which 
 	\item Now either 
 	\begin{enumerate}
 		\item $A$ and $B$ sign a transaction and complete the procedure
-		\item $A$ refuses to "pay" $B$ by signing the transaction, and $B$ proofs to the network that $A$ cheated
+		\item $A$ refuses to "pay" $B$ by signing the transaction, 
+		and $B$ proves to the network that $A$ cheated
 	\end{enumerate}
 \end{enumerate}
-Naturally, being proven to be a cheater should negatively impact reputation. Note how $B$ can't blame $A$ without both the proof of $A$ willing to receive work, and the proof of $B$ having performed the work.
+Naturally, being proven to be a cheater should negatively impact reputation. 
+Note how $B$ can't blame $A$ without both the proof of $A$ willing to receive work, 
+and the proof of $B$ having performed the work.
 
-At step \ref{atomic_transactions_enumerate_proof_of_work} we skipped over how to exactly provide cryptographic proof of work performed. This type of proof should depend on the application. It should however always be at least as hard to obtain the proof as to perform the actual work.
+At step \ref{atomic_transactions_enumerate_proof_of_work} we skipped over how to exactly provide cryptographic proof of work performed. 
+This type of proof should depend on the application. 
+It should however always be at least as hard to obtain the proof as to perform the actual work.
 
 \subsubsection{Proof of transmission}\label{sssection:proof_of_transmission}
-In the case of file transfers, it is impossible to cryptographically prove that data has been sent over a passive channel \cite{kravchenko}. It is however possible for an agent to prove to another that it is in possession of the data to be sent. This is called a "proof of custody", which is essentially a zero-knowledge proof which can only be performed by an agent in possession of a private key.
+In the case of file transfers, 
+it is impossible to cryptographically prove that data has been sent over a passive channel \cite{kravchenko}. 
+It is however possible for an agent to prove to another that it is in possession of the data to be sent. 
+This is called a "proof of custody", which is essentially a zero-knowledge proof which can only be performed by an agent in possession of a private key.
 
 \section{Past systems}
 \subsection{Bartercast}
