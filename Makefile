@@ -1,7 +1,8 @@
 MAIN=main
 
 pdf:
-	pdflatex $(MAIN).tex 
+	latexmk $(MAIN)
+	pdflatex $(MAIN)
 
 view:
 	evince ./$(OUTPUT_DIR)/$(MAIN).pdf &

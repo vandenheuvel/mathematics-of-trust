@@ -2,7 +2,7 @@
 While having been criticized for being unsuited to model economic choices made by human beings, 
 a neoclassical economic model of utility maximization can be well-suited to analyze a system such as the one we are interested in. 
 Namely, in practice the making of these choices will be automated and executed by a program well able to quantify utility. 
-Moreover, notice that the model developed below assumes only agents' ability to order different utilities rather than calculate their magnitudes.
+Moreover, notice that the model developed below assumes only agents' ability to order different utilities rather than calculate their magnitudes in absolute terms.
 
 \section{Notation}\label{section:model_notation}
 We will start developing our model by considering a market $M := \{ A | A \ \text{is an \emph{active} agent} \}$ where a unitary good $v$, 
@@ -93,7 +93,7 @@ we must ask ourselves what behaviors it should generate from agents.
 An entire chapter is dedicated to this problem (chapter \ref{chapter:reputation}). 
 For now, we will only state a requirement that the system as a whole should, at least, achieve.
 
-\subsection{Total contribution and "leakage"}
+\subsection{Total contribution and ``leakage''}
 We first define for agents $A \in M$ the function $\sigma_A: \mathcal{H} \to \mathds{Z} = |W_A| - |V_A|$, the net amount of work performed by $A$. 
 Clearly we would like many agents to have $\sigma \geq 0$, 
 but we will not pursue individual behavior further in this section. 
