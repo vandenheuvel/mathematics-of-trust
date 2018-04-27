@@ -43,6 +43,9 @@ The miner which ``finds'' a new block is awarded with some currency in the ledge
 In all major blockchains, consensus on the latest state of the ledger is formed by mining a block. This requires that all transactions are globally known, which fundamentally limits the scalability of such a system. In pursuing a more scalable solution, another data structure has been invented called ``TrustChain''.
 
 \section{TrustChain}
+% TODO: Write about efficiency of blockchains without proof-of-work
+% TODO: Write about how global state can never scale
+% TODO: Write about how global consensus systems are ``fragile''
 In TrustChain, all network participants have and maintain their own chain. There is no mining, and no global consensus. TrustChain works fundamentally different than existing blockchains; we sometimes call these blockchains ``fourth-generation blockchains''.
 
 Users create a new chain by generating a public-private keypair and a first, empty block. When they participate in a transaction with another TrustChain user, they create a block pointing to both their own, and their transaction partner's last block. Next to the transaction contents, they append a signature using they private key. An example of blocks and references is given in Figure \ref{fig:tangle_example}.
