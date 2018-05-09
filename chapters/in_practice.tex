@@ -1,25 +1,36 @@
 \chapter{Reputation in practice}
 \section{Introduction}
+The model used in the previous chapters is in several ways quite heavily restricted. This chapter lists several ways in which the previous model fails to accurately capture reality. The simplifications made are often large enough to make known results from game theory unusable. As such, it is primarily this chapter which captures the difficulty of designing scalable reputation systems useful in the real world. Not all of these differences make the this task harder, though.
 
 \section{Knowledge of past interactions}
-% TODO: Partial graph view; there is no perfect ordering
+\subsection{Sharing}
+In TrustChain, participants should store at least the transactions they themselves were involved in. Because transactions are, shortly after creation, known only to the authors, they should share the transaction made with other active agents. They can either broadcast the transaction proactively, or send it when requested by others.
+
 \subsection{Limited storage}
+Whereas the previous chapters assumed all historic events are known by all at all times, this is clearly not the case in practice. No ledger can be duplicated completely for all of its participants and scale well at the same time.
+
+Agents must therefor decide selectively what to store. This could, for example, be a random sample of past transactions, or only some aggregate statistics. Other possibilities are to store only recently created transactions, or to compress historic data in some lossy way.
+
+\subsection{Limited networking capabilities}
+It is not only limited, costly storage which prevents this from being a possibility; it is also the limited bandwidth of computer networks which ensure that such an amount of data cannot be communicated.
 
 \subsection{Limited computation power}
-% TODO: Did you know that Bitcoin mining is NP-hard? (https://freedom-to-tinker.com/2014/10/27/bitcoin-mining-is-np-hard/)
-% TODO: Finite storage capabilities and incomplete history
-
-\subsection{Limited bandwidth}
+Where fundamental game theory often rests upon an assumption of infinite computational abilities, they are very much finite in practice.\footnote{\emph{Did you know that Bitcoin mining is NP-hard?} \url{https://freedom-to-tinker.com/2014/10/27/bitcoin-mining-is-np-hard/}} These limitations become apparent in algorithms such as NetFlow \cite{otte2016sybil}.
 
 \section{The human factor}
-% TODO: Consider ordering this using Lessigs ``Pathetic Dot'' theory, although possibly ``Law'' isn't as relevant
+Thus far we implicitly assumed that all agent's actions would be determined by automated decision making. The system should definitely be ``incentive-proof'' to a standard removing the opportunity for exploitation using automated decision making. In practice, however, many agents are human beings or are software scripts being run by human beings which don't modify default behavior and in this way, act honestly and cooperatively.
+
 \subsection{Power of defaults}
-% TODO: A large percentage of real users won't modify their installation
+As mentioned above: a significant percentage of users do not modify default software installations. Estimating the size of this fraction is hard, however, and making assumptions about it is seen by some as academically impure.
 
 \subsection{Norms}
-% TODO: A sense of belonging, norms and values, feeling of responsibility, a higher goal
+Other things that set human beings apart from automated decision making are values, norms, feelings of responsibility, higher goals and a sense of belonging. All these phenomena provide significant, alternative means to compel people to cooperate.
 
 \section{Networking}
-\subsection{Limited uptime}
+Besides limited bandwidth, overhead and transmission errors, there are more difficulties caused by the limitations of computer networks.
 
-\subsection{Imperfect connections}
+\subsection{Availability}
+Other agents are not always available for communication. This may impact an agent's ability to request certain blocks. Otherwise, an unexpected network failure might result in a complete interruption of communication during the creation of a transaction.
+
+\subsection{Latency}
+Fundamental physical limits ensure that latency will always be above a certain threshold, once physical distance is sufficiently large. Otherwise, a connection between two agents might have an above average amounts of hops in it resulting in higher latency through packet switching.

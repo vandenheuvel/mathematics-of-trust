@@ -3,11 +3,6 @@
 \subsection{Public-key cryptography}
 % TODO: White about basic asymmetric cryptography
 
-\subsection{Proof-of-work system for identity creation}\label{sssection:chain_creation_cost}
-While generating a keypair is cheap, this can be made more costly by imposing certain requirements on the keypair. For example, a protocol could require all public keys to have a certain low hash value.
-
-Depending on several factors, this measure can be effective. This measure is limited by the low cost with which honest users should be able to create a keypair. A reasonable requirement for keypair generation could be ``within three seconds on a smartphone''. In that case, a determined attacker can still easily generate an enormous number of identities with general-purpose computing on graphics processing units.
-
 \subsection{Atomic transactions}
 One of the many assumptions made in section \ref{section:model_notation} was the atomicity of transactions. 
 This appears trivial at first, but is not in practice. 
@@ -45,9 +40,22 @@ it is impossible to cryptographically prove that data has been sent over a passi
 It is however possible for an agent to prove to another that it is in possession of the data to be sent. 
 This is called a "proof of custody", which is essentially a zero-knowledge proof which can only be performed by an agent in possession of a private key.
 
+\section{Double-spend and fork prevention}
+An agent $A$ might try to benefit by using its current chain to compel another agent $B$ to make a (large) transaction. After the transaction has been made, $A$ can hide the transaction made with $B$ from $C$, with whom he then does a second (large) transaction which $C$ would not have done if it had know about the first transaction. This is also known as "double spending".
+
+In order to prevent an agent from making a transaction while withholding previous transactions, those agents collecting blocks should always look for two blocks made by the same agent pointing to the same block: this implies a double-spend. Once a double-spend is detected, and the author of the transaction is marked as a ``cheater'', agents should refuse to transact with this person again.
+
 \section{Sybil prevention}\index{Sybil attack!Prevention}
 \subsection{Fundamental Limits}
 % TODO: Write about fundamental limits of Sybil attack prevention
+
+\subsection{Proof-of-work system for identity creation}\label{sssection:chain_creation_cost}
+While generating a keypair is cheap, this can be made more costly by imposing certain requirements on the keypair. For example, a protocol could require all public keys to have a certain low hash value.
+
+Depending on several factors, this measure can be effective. This measure is limited by the low cost with which honest users should be able to create a keypair. A reasonable requirement for keypair generation could be ``within three seconds on a smartphone''. In that case, a determined attacker can still easily generate an enormous number of identities with general-purpose computing on graphics processing units.
+
+\subsection{Latency}
+By requiring a limited link latency for all agents interacted with, participants can force the geographical proximity of their transaction partners. Otherwise they could ask another trusted agent to test their geographical proximity to the agent being considered for a transaction.
 
 \subsection{NetFlow}\index{Sybil attack!NetFlow}
 % TODO: Write about NetFlow

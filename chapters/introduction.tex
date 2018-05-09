@@ -94,4 +94,8 @@ Users create a new chain by generating a public-private keypair and a first, emp
 	\caption{An example of a collection of blocks and pointers. Adapted from \cite{otte2016sybil}.} \label{fig:tangle_example}
 \end{figure}
 
-Users share (part of) their chains with the people they transact with, and possibly share their blocks with and collect blocks from others. This data structure is extremely scalable. But because there is no global consensus, several problems arise. Before we analyze possible solutions, we will start from a model which attempts to capture the motivations of those participating in the network.
+Users share (part of) their chains with the people they transact with, and possibly share their blocks with and collect blocks from others. This data structure is extremely scalable. But because there is no global consensus, several problems arise.
+
+We will first list several other requirements for such a distributed ledger. Then, we will develop a model which attempts to capture the motivations of those participating in the network. This leads us to frame the problem in a game theoretic way, after which we consider the notion of reputation.
+
+After we then examine several ways in which reality is still different from the model proposed, a brief summary of previous systems attempting to solve the trust problem is provided. We then consider other proposals which partially solve the trust problem, after which we finally provide an overview of open problems.
