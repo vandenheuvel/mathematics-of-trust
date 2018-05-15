@@ -2,6 +2,8 @@
 \section{Introduction}
 The model used in the previous chapters is in several ways quite heavily restricted. This chapter lists several ways in which the previous model fails to accurately capture reality. The simplifications made are often large enough to make known results from game theory unusable. As such, it is primarily this chapter which captures the difficulty of designing scalable reputation systems useful in the real world. Not all of these differences make the this task harder, though.
 
+From this chapter onwards, more terminology will be used to describe the problem from a computer science perspective, rather than a game theoretic one.
+
 \section{Knowledge of past interactions}
 \subsection{Sharing}
 In TrustChain, participants should store at least the transactions they themselves were involved in. Because transactions are, shortly after creation, known only to the authors, they should share the transaction made with other active agents. They can either broadcast the transaction proactively, or send it when requested by others.
