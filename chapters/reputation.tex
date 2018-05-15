@@ -8,10 +8,12 @@ such as free riding.
 The difficulty is of course how to formalize the different behaviors.
 
 \section{Requirements for the reputation function}\label{section:requirements_reputation}
-We will first describe several properties which the reputation function should at least respect if we want to achieve $\lim_{|H| \to \infty} L_M(H) < \infty$.
+We will first describe several properties which the reputation function should at least respect if we want to achieve $\lim_{|H| \to \infty} L_M(H) < \infty$. Some intuitively reasonable functions will turn out to be insufficient.
 
 \subsection{Sybil resistance}\index{Sybil attack}
-Because all agents create and maintain their own chain, as well as are allowed to join the market freely, creating a new chain (and as such, a new identity) is cheap.\footnote{For a potential solution, see section \ref{sssection:chain_creation_cost}}
+Because all agents create and maintain their own chain, as well as are allowed to join the market freely, creating a new chain (and as such, a new identity) is cheap. As such, we can't assume all agents act independently; a single agent might create other, ``sybil'' identities who secretly collaborate. Their goal is to accumulate utility for some subgroup of the identities, after which the other identities are often abandoned.
+
+One such intuitive reputation function is $r := f(\sigma_A)$ for some $f$ with $s > s^\prime \in \mathds{Z} \Leftrightarrow f(s^\prime) < f(s)$. Now suppose agent $A$ creates sybil agent $A^\prime$, and creates a large number of transaction records showing that $A$ contributes to $A^\prime$. Recall that transaction creation was assumed to be costless.
 
 \section{Examples of reputation functions}\label{section:examples_reputation_functions}
 % TODO: Show how a simple maximize \sigma fails finite leakage properties
