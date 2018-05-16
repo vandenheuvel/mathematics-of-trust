@@ -10,8 +10,7 @@ which has value and can be created by doing one unit of work $w$, is traded.
 Agents are said to be active if they will trade in the future. 
 Denote by $V_A$ the set of all $v$ owned or consumed by $A$ and by $W_A$ all units of work $A$ has performed. 
 All agents are able to transact in an atomic, costless manner. 
-Transactions are ordered in time and record a single $v$ being sold by agent $B$ to agent $A$ as transaction $T = (A, p(v), B)$, 
-where $p(v) \in \mathds{R}_{>0}$ denotes the price of $v$. 
+Transactions are ordered in time and record a single $v$ being sold by agent $A$ to agent $B$ as transaction $T = (A, B)$. 
 All past transactions are recorded in a history $H$, 
 of which we will for now assume that it is complete and available to all agents in $M$. 
 When a transaction $T$ is appended to history $H$, 
@@ -25,7 +24,7 @@ We now define $r_M: (M \times \mathcal{H}) \to \mathcal{R}$ as
 the highest reputation assigned by any market member.
 
 We denote by $u^R_A: \mathcal{R} \to \mathcal{U}$ the utility $A$ derives from reputation $r \in \mathcal{R}$, 
-and by $u^V_A: V \to \mathcal{U}$ the utility $A$ derives from valueable $v$. 
+and by $u^V_A: V \to \mathcal{U}$ the utility $A$ derives from valuable $v$. 
 We assume that a unit of work performed by $A$ costs utility $u^W_A$, 
 while a $v$ received lets $A$ enjoy a positive $u^V_A$. 
 The total utility of agent $A$ is now denoted by $u^T_A: \mathcal{H} \to \mathcal{U} = u^R_A + \sum_{v \in V_A} u^V_A(v) + \sum_{w \in W_A} u^W_A(w)$. 
@@ -36,8 +35,6 @@ Naturally, we suppose that agents in $M$ attempt to maximize their $u^T$ by taki
 \section{Interpretation}
 In such a market $M$, an agent $A$'s reputation depends on the entire history $H$. 
 We can view $A$'s reputation $r_M(A|H)$ as a measure of $A$'s future ability to do create transactions in the network. 
-The price $p(v)$ that two agents might agree upon, 
-will depend on the utility they derive from the valuable $v$ transfered and the change in assigned reputation by the market after this transaction. 
 The reputation of $A$ will influence its ability to participate in $M$ in the future. 
 In this way, the utility derived from $v$ and utility derived from $A$'s reputation represent $A$'s short- and long-term interests, respectively.
 
@@ -63,9 +60,12 @@ Note that they cannot cross.
 
 \subsection{Transaction condition}
 We are now ready to formulate a simple transaction condition for agent $A$. 
-Its utility will increase by doing a transaction $T = (A, p(v), B)$ if $u^T_A(H + T) > u^T_A(H)$, 
+Its utility will increase by doing a transaction $T$ if $u^T_A(H + T) > u^T_A(H)$, 
 or 
-\[u^R_A(r_M(A|H + T)) + u_A(v) > u^R_A(r_M(A|H)).\]
+\begin{align*}
+u^R_A(r_M(A|H + T)) + u^W_A(w) > u^R_A(r_M(A|H)) &\text{ for } T = (A, B),\\
+u^R_A(r_M(A|H + T)) + u^V_A(v) > u^R_A(r_M(A|H)) &\text{ for } T = (B, A).
+\end{align*}
 Note that this condition isn't dependent on $r_A$. 
 This implies that in deciding which trades to perform, 
 an agent's own measure of reputation is irrelevant: 
@@ -73,9 +73,9 @@ it only matters how an agent thinks the rest of the market perceives its actions
 In this way, taking the $u_A$'s as given, 
 $A$'s behavior is governed completely the $r$ used by the $B \in M \setminus \{ A \}$. 
 Once a certain reputation function is used by a large fraction of participants, 
-all are incentivized to use it; 
+all are compelled to use it; 
 reestablishing the status quo. 
-For this reason, we'll from now on assume that all agents use the same reputation function $r$ to calculate reputations from $H$.
+For this reason, we'll from now on assume that all agents use the same reputation function $r$ to calculate reputations from $H$. We'll say that $r$ \emph{dominates} $M$.
 
 \subsection{Reputation}
 Why should agents value their reputation at all, 
@@ -84,7 +84,7 @@ As we will show later,
 there needs to be some mechanism to exclude non cooperative agents. 
 Agents in $M$ are active and as such get value from doing transactions in $M$. 
 So naturally, they get utility from these transactions. 
-In this way, the ability to do transaction is valueable and gives positive utility.
+In this way, the ability to do transaction is valuable and gives positive utility.
 
 \section{Conditions for a system of trust}
 A question of great importance is which function $r$ to use. 
@@ -94,12 +94,12 @@ An entire chapter is dedicated to this problem (chapter \ref{chapter:reputation}
 For now, we will only state a requirement that the system as a whole should, at least, achieve.
 
 \subsection{Total contribution and ``leakage''}
-We first define for agents $A \in M$ the function $\sigma_A: \mathcal{H} \to \mathds{Z} = |W_A| - |V_A|$, the net amount of work performed by $A$. 
-Clearly we would like many agents to have $\sigma \geq 0$, 
+We first define for agents $A \in M$ the function $\sigma_A: \mathcal{H} \to \mathds{Z} = |V_A| - |W_A|$, the net amount of work performed by $A$. 
+Clearly we would like to have a small number of agents with $\sigma < 0$, 
 but we will not pursue individual behavior further in this section. 
 Instead, we will consider the summed net contribution of all active agents $A$:
-\[L_M(H) := \sum_{A \in M} \sigma_A(H).\]
-We call $L_M$ the ``leakage'' occurring in $M$. 
+\[L_M(H) := -\sum_{A \in M} \sigma_A(H).\]
+We call $L_M$ the \emph{leakage} occurring in $M$. 
 It represents the work performed by active agents which is lost to agents that have become inactive. 
 For $M$ to function properly, 
 we do not want $L_M$ to become too large. 
@@ -125,4 +125,4 @@ The same applies for the reverse order of actions:
 as soon as $A$ sells the product, 
 its reputation changes influencing $A$'s ability to buy it back later.
 
-This change in reputation can present itself in the form of higher or lower $p(v)$'s, but also by a different willingness by others to transact at all.
+This change in reputation can also present itself as a different willingness by others to transact at all.

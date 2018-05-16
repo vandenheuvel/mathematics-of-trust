@@ -7,16 +7,26 @@ and punish behavior that threatens the health of the system,
 such as free riding. 
 The difficulty is of course how to formalize the different behaviors.
 
-\section{Requirements for the reputation function}\label{section:requirements_reputation}
-We will first describe several properties which the reputation function should at least respect if we want to achieve $\lim_{|H| \to \infty} L_M(H) < \infty$. Some intuitively reasonable functions will turn out to be insufficient.
+\section{Requirements and examples}\label{section:requirements_reputation}
+We will first describe several properties which the reputation function should at least respect if we want to achieve finite leakage. 
+
+\subsection{Giving feedback}
+Any reputation function must be in some way recursive: it must give a high reputation to those contributing to the agents with a high reputation. If this would not be the case, a high reputation is not valuable and as such not something that provides utility.
+
+Consider for example the reputation function $r(A, H) = \sigma_A$, which doesn't recursively use any reputations and $M = \{ A, B, C \}$ being ruled by $r$. $B$ can show a high reputation to $C$ by working for $A$, even if $A$ is a free-rider and won't contribute to either $B$ or $C$. As such, all work performed by $B$ is worthless to anyone but $A$. Even if $C$ decides to do work for $B$ because of its high reputation, $L_{\{ B, C \}}$ will grow indefinitely while transactions continue to happen.
+
+A reputation function which does give feedback, is the one awarding a unit of reputation for working for the agent with the highest reputation, and subtracting one unit of reputation for receiving work. More formally, assume $\mathcal{R} \subseteq \mathds{Z}$ and let $H = H^\prime + T$ if $|H| \geq 1$,
+\[ r(A|H) = \begin{cases}
+0 & \text{if } H = \emptyset\\
+1 & \text{if } H = T = (A, \cdot)\\
+1 + r(A|H^\prime) & \text{if } T = (A, B), B = \argmax_X r(X|H^\prime)\\
+r(A|H^\prime) - 1 & \text{if } T = (\cdot, A)\\
+r(A|H^\prime) & \text{else}.\\ 
+\end{cases} \]
+With this reputation function dominating $M$, agents will only be rewarded when they provide value to the agent with the reputation which is currently highest.
 
 \subsection{Sybil resistance}\index{Sybil attack}
 Because all agents create and maintain their own chain, as well as are allowed to join the market freely, creating a new chain (and as such, a new identity) is cheap. As such, we can't assume all agents act independently; a single agent might create other, ``sybil'' identities who secretly collaborate. Their goal is to accumulate utility for some subgroup of the identities, after which the other identities are often abandoned.
-
-One such intuitive reputation function is $r := f(\sigma_A)$ for some $f$ with $s > s^\prime \in \mathds{Z} \Leftrightarrow f(s^\prime) < f(s)$. Now suppose agent $A$ creates sybil agent $A^\prime$, and creates a large number of transaction records showing that $A$ contributes to $A^\prime$. Recall that transaction creation was assumed to be costless.
-
-\section{Examples of reputation functions}\label{section:examples_reputation_functions}
-% TODO: Show how a simple maximize \sigma fails finite leakage properties
 
 \section{Deciding on fairness}
 % TODO: What is the behavior we want to be rewarded? If there are many possible reputation functions to make such a system work, what do we want it to achieve?
