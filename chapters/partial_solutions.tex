@@ -1,7 +1,7 @@
 \chapter{Partial Solutions}
 \section{Identity and secrets}
 \subsection{Public-key cryptography}
-% TODO: White about basic asymmetric cryptography
+We often refer to the ``identity'' of an agent or network participant. We use this term to refer to the keypair that a node generates, and by which it identifies itself. Such a keypair consists of a public and private part: the first publicly known, the latter secret. Those in possession of a private key can demonstrate its ownership by \emph{signing} pieces of data. Others can then use the public part of the key to verify the correctness of the signature. The keypair can also be used for encryption: all who know a public key can use it to encrypt a piece of information in such a way that only the holder of the corresponding private key can decrypt it.
 
 \subsection{Atomic transactions}
 One of the many assumptions made in section \ref{section:model_notation} was the atomicity of transactions. 
@@ -63,6 +63,9 @@ instead of completely eliminating the possibility of such an attack.
 While generating a keypair is cheap, this can be made more costly by imposing certain requirements on the keypair. For example, a protocol could require all public keys to have a certain low hash value.
 
 Depending on several factors, this measure can be effective. This measure is limited by the low cost with which honest users should be able to create a keypair. A reasonable requirement for keypair generation could be ``within three seconds on a smartphone''. In that case, a determined attacker can still easily generate an enormous number of identities with general-purpose computing on graphics processing units.
+
+\subsection{Tying identities to IP-addresses}
+As suggested in \cite{meulpolder2009bartercast}, it is possible to link identities to IP addresses, allowing only a fixed number of identities to exist for every IP address.
 
 \subsection{Latency}
 By requiring a limited link latency for all agents interacted with, participants can force the geographical proximity of their transaction partners. Otherwise they could ask another trusted agent to test their geographical proximity to the agent being considered for a transaction.
