@@ -1,7 +1,7 @@
 \chapter{Partial Solutions}
 \section{Identity and secrets}
 \subsection{Public-key cryptography}
-% TODO: White about basic asymmetric cryptography
+We often refer to the ``identity'' of an agent or network participant. We use this term to refer to the keypair that a node generates, and by which it identifies itself. Such a keypair consists of a public and private part: the first publicly known, the latter secret. Those in possession of a private key can demonstrate its ownership by \emph{signing} pieces of data. Others can then use the public part of the key to verify the correctness of the signature. The keypair can also be used for encryption: all who know a public key can use it to encrypt a piece of information in such a way that only the holder of the corresponding private key can decrypt it.
 
 \subsection{Atomic transactions}
 One of the many assumptions made in section \ref{section:model_notation} was the atomicity of transactions. 
