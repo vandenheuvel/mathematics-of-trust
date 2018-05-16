@@ -5,6 +5,9 @@ The model used in the previous chapters is in several ways quite heavily restric
 From this chapter onwards, more terminology will be used to describe the problem from a computer science perspective, rather than a game theoretic one.
 
 \section{Knowledge of past interactions}
+\subsection{Ordering}
+The analysis in chapter \ref{chapter:reputation} relied heavily on a complete ordering of transactions. In reality, however, scalability requires that transactions can be created independently of each other, at the same time. As such, in reality we only have a partial ordering. This makes any reputation functions defined previously unusable in practice. See \cite{otte2016sybil} for a model which incorporates this requirement.
+
 \subsection{Sharing}
 In TrustChain, participants should store at least the transactions they themselves were involved in. Because transactions are, shortly after creation, known only to the authors, they should share the transaction made with other active agents. They can either broadcast the transaction proactively, or send it when requested by others.
 
