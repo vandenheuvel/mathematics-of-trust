@@ -46,8 +46,18 @@ An agent $A$ might try to benefit by using its current chain to compel another a
 In order to prevent an agent from making a transaction while withholding previous transactions, those agents collecting blocks should always look for two blocks made by the same agent pointing to the same block: this implies a double-spend. Once a double-spend is detected, and the author of the transaction is marked as a ``cheater'', agents should refuse to transact with this person again.
 
 \section{Sybil prevention}\index{Sybil attack!Prevention}
-\subsection{Fundamental Limits}
-% TODO: Write about fundamental limits of Sybil attack prevention
+\subsection{Fundamental Limitations}
+It can be shown that Sybil attacks cannot always be prevented. 
+For instance, when using a reputation function that only depends on the topology of the network graph, 
+it can be shown that such a system is always susceptible to Sybil attacks. 
+%TODO: cite Cheng+Friedmann
+This means relative positions, 
+for instance compared to some trusted user, 
+need to be used. 
+Even in this case, 
+there are limitations to preventing Sybil attacks. 
+Nevertheless, it might suffice to make Sybil attacks unprofitable, 
+instead of completely eliminating the possibility of such an attack. 
 
 \subsection{Proof-of-work system for identity creation}\label{sssection:chain_creation_cost}
 While generating a keypair is cheap, this can be made more costly by imposing certain requirements on the keypair. For example, a protocol could require all public keys to have a certain low hash value.
@@ -58,7 +68,15 @@ Depending on several factors, this measure can be effective. This measure is lim
 By requiring a limited link latency for all agents interacted with, participants can force the geographical proximity of their transaction partners. Otherwise they could ask another trusted agent to test their geographical proximity to the agent being considered for a transaction.
 
 \subsection{NetFlow}\index{Sybil attack!NetFlow}
-% TODO: Write about NetFlow
+When sybils are being used by attackers to feign contribution to the network, 
+there is typically much traffic between the attacker and its pseudonymous identities, 
+and less across the network. 
+Therefore, the NetFlow algorithm uses max-flow computations to determine the traffic flow across the whole network, 
+serving as a metric for trustworthiness of agents in the network. Hence, the profit of cheating using Sybil effects is bounded. 
+However, the NetFlow algorithm is computationally expensive, 
+which means it is not fast enough for most practical applications. 
+The algorithm could possibly be reconsidered, 
+or replaced by a (probabilistic) approximation variant. 
 
 \section{Consensus}
 \subsection{Checo}
