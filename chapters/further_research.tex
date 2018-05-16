@@ -1,8 +1,12 @@
 \chapter{Further research}
 We identify unanswered questions several area's of future research. 
 This chapter provides an overview of these questions and attempts to structure them.
+Note that barely any of the differences between the theory and practice as highlighted in chapter \ref{chapter:differences} are solved problems, let alone the interplay between them.
 
 \section{Identity and secrets}
+\subsection{Derived identities}
+If one is willing to accept a third, central party as a trusted distributor of identities only, such as a government, it may be possible to address the sybil attack problem as follows. Use the identity (public-private keypair) as received from the trusted third party to create a derived identity for a specific application. We now need a zero-knowledge proof scheme to show that any derived identity is backed by a master identity, which can't be produced in large quantities. Moreover, a zero-knowledge proof is needed to demonstrate that two derived identities are not derived from the same master identity, such that for any specific application, only a single derived identity can be created by each master identity. In this way, users can be anonymous while be certain that no individual has multiple identities.
+
 \subsection{Proof of transmission}
 In section \ref{sssection:proof_of_transmission} it was mentioned that a proof of transmission over a \emph{passive} channel is impossible. 
 A passive channel is one in which ``does not modify or sign the data it transmits'' \cite{kravchenko}. 
@@ -28,8 +32,8 @@ While PageRank is relatively cheap to approximate precisely, it is unclear what 
 % TODO: Expand upon this
 
 \subsection{About time}
-% TODO: How to reduce the importance of historic events, if at all
+An open question is how to prioritize older transactions made. Should they be removed from computations, made less important, or be regarded just as important as the most recent transactions? This is interesting from both a normative point of view, as well as a utilitarian point of view considering changes in effectiveness of for example sybil prevention.
 
 \section{Advanced concepts}
 \subsection{Smart contracts}
-% TODO: Whether fourth generation blockchains can offer a runtime environment
+It's interesting to consider what an execution model for a DAG blockchain or tangle would look like. The triggering of logical rules using state change can't be synchronized globally, as this would require global consensus. Instead, alternative models need to be defined.
