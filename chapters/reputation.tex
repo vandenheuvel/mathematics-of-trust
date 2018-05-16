@@ -13,20 +13,33 @@ We will first describe several properties which the reputation function should a
 \subsection{Giving feedback}
 Any reputation function must be in some way recursive: it must give a high reputation to those contributing to the agents with a high reputation. If this would not be the case, a high reputation is not valuable and as such not something that provides utility.
 
-Consider for example the reputation function $r(A, H) = \sigma_A$, which doesn't recursively use any reputations and $M = \{ A, B, C \}$ being ruled by $r$. $B$ can show a high reputation to $C$ by working for $A$, even if $A$ is a free-rider and won't contribute to either $B$ or $C$. As such, all work performed by $B$ is worthless to anyone but $A$. Even if $C$ decides to do work for $B$ because of its high reputation, $L_{\{ B, C \}}$ will grow indefinitely while transactions continue to happen.
-
-A reputation function which does give feedback, is the one awarding a unit of reputation for working for the agent with the highest reputation, and subtracting one unit of reputation for receiving work. More formally, assume $\mathcal{R} \subseteq \mathds{Z}$ and let $H = H^\prime + T$ if $|H| \geq 1$,
+A reputation function which does give feedback, with $\mathcal{R} \subseteq \mathds{Z}$ and $H = H^\prime + T$ if $|H| \geq 1$, is the following:
 \[ r(A|H) = \begin{cases}
 0 & \text{if } H = \emptyset\\
-1 & \text{if } H = T = (A, \cdot)\\
-1 + r(A|H^\prime) & \text{if } T = (A, B), B = \argmax_X r(X|H^\prime)\\
+r(A|H^\prime) + 1 & \text{if } T = (A, B), r(B|H^\prime) \geq 0\\
 r(A|H^\prime) - 1 & \text{if } T = (\cdot, A)\\
 r(A|H^\prime) & \text{else}.\\ 
 \end{cases} \]
-With this reputation function dominating $M$, agents will only be rewarded when they provide value to the agent with the reputation which is currently highest.
+That is, $A$ gains a unit of reputation for a transaction with $B$, provided that $B$ has a nonnegative reputation. Being on the consuming end of a transaction costs a unit of reputation.
+
+Because no agent will be awarded reputation for working for a free-rider (as $B$ did in the previous example. When $M$ is prescribed by the above $r$, all agents can consume without contributing only once; showing that $L_M$ is bounded above by $|M|$.
 
 \subsection{Sybil resistance}\index{Sybil attack}
-Because all agents create and maintain their own chain, as well as are allowed to join the market freely, creating a new chain (and as such, a new identity) is cheap. As such, we can't assume all agents act independently; a single agent might create other, ``sybil'' identities who secretly collaborate. Their goal is to accumulate utility for some subgroup of the identities, after which the other identities are often abandoned.
+Because all agents create and maintain their own chain and are allowed to join the market freely, creating a new chain (and as such, a new identity) is cheap. As such, we can't assume all agents act independently; a single agent might create other, \emph{sybil} identities who secretly collaborate. Their goal is to accumulate utility for some subgroup of the identities, after which the other identities are often abandoned. From this point onward, we adapt our model to reflect this possibility.
+
+As such, we need our reputation function to be \emph{sybil resistant}. With our previous definition, $r$ doesn't protect against the sybil attack. An agent $A \in M$ could create an infinite number of identities $A_0, A_1, \ldots$ and create with each identity a transaction recording the transfer of value without actually performing any work.
+
+We will now adapt our reputation function to be sybil resistant. Previously agents had some freedom in choosing who to perform work for, allowing for the possibility of working for one's sybil identities. We will now remove this opportunity by awarding a unit of reputation only when performing work for the agent in $M$ with the highest reputation. Again, receiving work costs a unit of reputation. Assume again $\mathcal{R} \subseteq \mathds{Z}$ and $H = H^\prime + T$ if $|H| \geq 1$,
+\[ r(A|H) = \begin{cases}
+0 & \text{if } H = \emptyset\\
+1 & \text{if } H = T = (A, \cdot)\\
+r(A|H^\prime) + 1 & \text{if } T = (A, B), B = \argmax_X r(X|H^\prime)\\
+r(A|H^\prime) - 1 & \text{if } T = (\cdot, A)\\
+r(A|H^\prime) & \text{else}.\\ 
+\end{cases} \]
+Let's start our analysis of this reputation function by considering the first transaction $T_1 = (A, B)$ happening in $M$. After this transaction, we have $r(A|T_1) = 1$ and $r(B|T_1) = -1$. Under our adapted model, $B$ has the possibility to abandon his previous identity and chain. $B$'s alternative is to start anew with an empty chain and identity $B^\prime$ without history, and as such with reputation $r(B^\prime|T_1) = 0$. Clearly, $B$ prefers reputation $0$ over reputation $-1$ and will create such a new identity $B^\prime$. Because at this point, $B$ will have become inactive, we now have $B \not \in M$. Moreover, $\sigma_A = 1$ and as such $L_M(H) = 1$.
+
+Because work performed will only be awarded reputation if it is performed for the agent with the highest reputation, this will be the only work performed. In this way, every transaction will remove a unit of reputation from agent with the highest reputation, repeatedly changing which agent has the highest reputation $r = 1$, all others having $r = 0$. We conclude that for this definition of $r$ we have $\lim_{|H| \to \infty} L_M(H) = 1$.
 
 \section{Deciding on fairness}
 % TODO: What is the behavior we want to be rewarded? If there are many possible reputation functions to make such a system work, what do we want it to achieve?

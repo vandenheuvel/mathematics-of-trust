@@ -75,7 +75,7 @@ $A$'s behavior is governed completely the $r$ used by the $B \in M \setminus \{ 
 Once a certain reputation function is used by a large fraction of participants, 
 all are compelled to use it; 
 reestablishing the status quo. 
-For this reason, we'll from now on assume that all agents use the same reputation function $r$ to calculate reputations from $H$. We'll say that $r$ \emph{dominates} $M$.
+For this reason, we'll from now on assume that all agents use the same reputation function $r$ to calculate reputations from $H$. We'll say that $r$ \emph{prescribes} $M$.
 
 \subsection{Reputation}
 Why should agents value their reputation at all, 
@@ -94,11 +94,11 @@ An entire chapter is dedicated to this problem (chapter \ref{chapter:reputation}
 For now, we will only state a requirement that the system as a whole should, at least, achieve.
 
 \subsection{Total contribution and ``leakage''}
-We first define for agents $A \in M$ the function $\sigma_A: \mathcal{H} \to \mathds{Z} = |V_A| - |W_A|$, the net amount of work performed by $A$. 
+We first define for agents $A \in M$ the function $\sigma_A: \mathcal{H} \to \mathds{Z} = |W_A| - |V_A|$, the net amount of work performed by $A$. 
 Clearly we would like to have a small number of agents with $\sigma < 0$, 
 but we will not pursue individual behavior further in this section. 
 Instead, we will consider the summed net contribution of all active agents $A$:
-\[L_M(H) := -\sum_{A \in M} \sigma_A(H).\]
+\[L_M(H) := \sum_{A \in M} \sigma_A(H).\]
 We call $L_M$ the \emph{leakage} occurring in $M$. 
 It represents the work performed by active agents which is lost to agents that have become inactive. 
 For $M$ to function properly, 
