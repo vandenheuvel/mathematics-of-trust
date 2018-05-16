@@ -54,6 +54,9 @@ While generating a keypair is cheap, this can be made more costly by imposing ce
 
 Depending on several factors, this measure can be effective. This measure is limited by the low cost with which honest users should be able to create a keypair. A reasonable requirement for keypair generation could be ``within three seconds on a smartphone''. In that case, a determined attacker can still easily generate an enormous number of identities with general-purpose computing on graphics processing units.
 
+\subsection{Tying identities to IP-addresses}
+As suggested in \cite{meulpolder2009bartercast}, it is possible to link identities to IP addresses, allowing only a fixed number of identities to exist for every IP address.
+
 \subsection{Latency}
 By requiring a limited link latency for all agents interacted with, participants can force the geographical proximity of their transaction partners. Otherwise they could ask another trusted agent to test their geographical proximity to the agent being considered for a transaction.
 
